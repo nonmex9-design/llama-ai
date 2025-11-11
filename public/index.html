@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Llama 4 Arena • Uncensored</title>
+  <link href="https://cdn.jsdelivr.net/npm/inter@3.19.3/dist/inter.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background: #0a0e17; 
+      color: #fff; 
+      height: 100vh; 
+      overflow: hidden;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 119, 198, 0.3) 0%, transparent 20%),
+        radial-gradient(circle at 50% 50%, rgba(80, 200, 255, 0.2) 0%, transparent 30%);
+    }
+    .bg-blur { 
+      position: fixed; inset: 0; 
+      backdrop-filter: blur(100px); 
+      background: rgba(10, 14, 23, 0.8);
+      z-index: -1;
+    }
+    .container { 
+      height: 100vh; 
+      display: flex; 
+      flex-direction: column; 
+      padding: 2rem;
+    }
+    .header { 
+      text-align: center; 
+      margin-bottom: 2rem; 
+      z-index: 10;
+    }
+    .header h1 { 
+      font-size: 3.5rem; 
+      font-weight: 800; 
+      background: linear-gradient(90deg, #a78bfa, #ec4899, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.02em;
+    }
+    .header p { 
+      color: #94a3b8; 
+      font-size: 1.2rem; 
+      margin-top: 0.5rem;
+    }
+    .chat-container { 
+      flex: 1; 
+      max-width: 900px; 
+      margin: 0 auto; 
+      width: 100%; 
+      display: flex; 
+      flex-direction: column;
+    }
+    .messages { 
+      flex: 1; 
+      overflow-y: auto; 
+      padding: 1rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .message { 
+      max-width: 80%; 
+      padding: 1rem 1.5rem; 
+      border-radius: 1.5rem; 
+      line-height: 1.6;
+      backdrop-filter: blur(10px);
+    }
+    .user { 
+      align-self: flex-end; 
+      background: rgba(139, 92, 246, 0.25); 
+      border: 1px solid rgba(139, 92, 246, 0.4);
+    }
+    .bot { 
+      align-self: flex-start; 
+      background: rgba(255, 255, 255, 0.08); 
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .input-bar {
+      position: relative;
+      margin-top: 2rem;
+      backdrop-filter: blur(20px);
+    }
+    .input-wrapper {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 2rem;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: flex-end;
+      gap: 1rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    textarea {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 1.1rem;
+      resize: none;
+      max-height: 200px;
+    }
+    button {
+      background: linear-gradient(90deg, #8b5cf6, #ec4899);
+      border: none;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    button:hover { transform: scale(1.1); }
+    .placeholder { color: #64748b; }
+  </style>
+</head>
+<body>
+  <div class="bg-blur"></div>
+  <div class="container">
+    <div class="header">
+      <h1>Llama 4 Arena</h1>
+      <p>Uncensored • No rules • Just raw Llama 4</p>
+    </div>
+
+    <div class="chat-container">
+      <div class="messages" id="messages"></div>
+
+      <div class="input-bar">
+        <div class="input-wrapper">
+          <textarea id="input" placeholder="Send a message..." rows="1"></textarea>
+          <button id="send">↑</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/worker.js"></script>
+</body>
+</html>
